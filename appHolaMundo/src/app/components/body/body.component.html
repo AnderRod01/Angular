@@ -1,11 +1,11 @@
-<div class="card" style="width: 18rem;">
+<!-- <div class="card" style="width: 18rem;">
     <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">Card title</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
-</div>
+</div> -->
 
 
 <div class="row">
@@ -13,17 +13,22 @@
         <h1>*ngIf</h1>
         <hr>
         <div class="container">
-            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <div *ngIf="mostrar" class="card text-white bg-primary mb-3" style="width: 100%;">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">{{frase.autor}}</h5>
+                    <p class="card-text">{{frase.mensaje}}</p>
                 </div>
             </div>
-            <a class="btn btn-outline-primary">Mostrar/ocultar</a>
+            <button (click) ="mostrar = !mostrar" class="btn btn-outline-primary btn-block">Mostrar/ocultar</button>
         </div>
     </div>
     <div class="col">
         <h1>*ngFor</h1>
         <hr>
+        <ul class="list-group">
+            <li *ngFor="let personaje of personajes; let i=index" class="list-group-item">
+                {{i+1}}-{{personaje}}
+            </li>
+        </ul>
     </div>
 </div>
