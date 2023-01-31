@@ -45,9 +45,5 @@ export class HeroeComponent implements OnInit{
         this.heroe = resp
       });
     }
-    
-   
-
   }
-
 }
