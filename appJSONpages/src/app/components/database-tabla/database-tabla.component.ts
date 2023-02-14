@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import { infoAPI } from 'src/app/models/infoAPI.model';
-import { DataService } from 'src/app/services/dataTableService/data.service';
+import { MatTableDataSource } from '@angular/material/table';
+
 
 export interface PeriodicElement {
   name: string;
@@ -11,16 +10,8 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const DATA: infoAPI[] =[{
-  API:'string', 
-  Description:'string',
-  Link:'string',
-  Category:'string',
-  Cors:'string'
-}
-]
 
-/*const ELEMENT_DATA: PeriodicElement[] = [
+const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
@@ -41,7 +32,7 @@ const DATA: infoAPI[] =[{
   {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
   {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
   {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-];*/
+];
 
 @Component({
   selector: 'app-database-tabla',
@@ -50,35 +41,14 @@ const DATA: infoAPI[] =[{
   ]
 })
 export class DatabaseTablaComponent implements AfterViewInit{
-  displayedColumns: string[] = ['API', 'Description', 'Link', 'Category','Cors'];
-  dataSource = new MatTableDataSource<infoAPI>([]);
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator! : MatPaginator
 
-  ngAfterViewInit () {
-    this.dataSource.paginator! = this.paginator;
+  ngAfterViewInit() {
+    this.dataSource.paginator! = this.paginator
   }
 
-  constructor(private _entradaServicio:DataService){}
-
-  listar(){
-    this._entradaServicio.getEntradas().subscribe(
-      response=>{
-        console.log(response);
-        if(response.count>0){
-          this.dataSource.data = response.entries
-        }
-      }
-    )
-    /*this.dataSource.data = [
-      {
-        API:'string', 
-        Description:'string',
-        Link:'string',
-        Category:'string',
-        Cors:'string'
-      },
-    ];*/
-  }
+  constructor () {}
 }
