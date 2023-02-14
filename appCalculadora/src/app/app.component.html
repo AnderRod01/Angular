@@ -1,0 +1,17 @@
+<form  [formGroup]="form" (ngSubmit)="mostrarResultado()">
+  <input type="number" value="0" formControlName="num1" id="num1" placeholder="Ingrese primer valor">
+  <input type="number" value="0" formControlName="num2" id="num2" placeholder="Ingrese segundo valor">
+
+  <input type="radio" checked formControlName="op" value="1" id="suma">
+  <label for="suma">Suma</label>
+  <input type="radio" formControlName="op" value="2" id="resta">
+  <label for="resta">Resta</label>
+  <input type="radio" formControlName="op" value="3" id="multiplicacion">
+  <label for="multiplicación">Multiplicación</label>
+  <input type="radio" formControlName="op" value="4" id="division">
+  <label for="division">División</label>
+
+  <button type="submit">Calcular</button>
+</form>
+
+<div *ngIf="resultado != null">El resultado es {{resultado}}</div>
